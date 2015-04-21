@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?artifactRepository version='1.1.0'?>
+<repository name='com.marvinformatics.formatter.feature Artifacts' type='org.eclipse.equinox.p2.artifact.repository.simpleRepository' version='1'>
+  <properties size='2'>
+    <property name='p2.timestamp' value='1429655572471'/>
+    <property name='p2.compressed' value='true'/>
+  </properties>
+  <mappings size='3'>
+    <rule filter='(&amp; (classifier=osgi.bundle))' output='${repoUrl}/plugins/${id}_${version}.jar'/>
+    <rule filter='(&amp; (classifier=binary))' output='${repoUrl}/binary/${id}_${version}'/>
+    <rule filter='(&amp; (classifier=org.eclipse.update.feature))' output='${repoUrl}/features/${id}_${version}.jar'/>
+  </mappings>
+  <artifacts size='2'>
+    <artifact classifier='org.eclipse.update.feature' id='com.marvinformatics.formatter.feature' version='1.5.0'>
+      <properties size='4'>
+        <property name='artifact.size' value='11853'/>
+        <property name='download.size' value='11853'/>
+        <property name='download.md5' value='5b6564682597df8778380114e115fa50'/>
+        <property name='download.contentType' value='application/zip'/>
+      </properties>
+    </artifact>
+    <artifact classifier='osgi.bundle' id='com.marvinformatics.formatter' version='1.5.0'>
+      <properties size='3'>
+        <property name='artifact.size' value='8659'/>
+        <property name='download.size' value='8659'/>
+        <property name='download.md5' value='518f0ac1bad9d8d127ae6622da0b508d'/>
+      </properties>
+    </artifact>
+  </artifacts>
+</repository>
