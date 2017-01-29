@@ -24,23 +24,26 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import junit.framework.TestCase;
+import static org.junit.Assert.*;
 
 import org.apache.maven.plugin.logging.Log;
 import org.apache.maven.plugin.logging.SystemStreamLog;
+import org.junit.Before;
+import org.junit.Test;
 
 import com.google.common.base.Charsets;
 import com.google.common.hash.Hashing;
 import com.google.common.io.Files;
 
-public abstract class AbstractFormatterTest extends TestCase {
+public abstract class AbstractFormatterTest {
 
-	protected void doTestFormat(Formatter formatter, String fileUnderTest)
-			throws IOException, NoSuchAlgorithmException {
-		File originalSourceFile = new File("src/test/resources/", fileUnderTest);
-		File sourceFile = createUnformatedFile(originalSourceFile);
+	private Formatter formatter;
 
+	@Before
+	public void setup() {
+		this.formatter = createFormatter();
 		Map<String, String> options = new HashMap<String, String>();
+		tuneDefaultConfigs(options);
 		final File targetDir = new File("target/testoutput");
 		targetDir.mkdirs();
 		formatter.init(options, new ConfigurationSource() {
@@ -69,6 +72,18 @@ public abstract class AbstractFormatterTest extends TestCase {
 				return "1.9";
 			}
 		});
+	}
+
+	public void tuneDefaultConfigs(Map<String, String> options) {
+	}
+
+	public abstract Formatter createFormatter();
+
+	@Test
+	public void doTestFormat() throws IOException, NoSuchAlgorithmException {
+		File originalSourceFile = new File("src/test/resources/", fileUnderTest());
+		File sourceFile = createUnformatedFile(originalSourceFile);
+
 		Result r = formatter.formatFile(sourceFile, LineEnding.LF, false);
 		assertEquals(Result.SUCCESS, r);
 
@@ -84,8 +99,10 @@ public abstract class AbstractFormatterTest extends TestCase {
 		assertEquals(msg, expectedSha1, sha1);
 	}
 
+	public abstract String fileUnderTest();
+
 	private File createUnformatedFile(File originalSourceFile) throws IOException {
-		File unformatedFile = new File("target/test-classes/", originalSourceFile.getName());
+		File unformatedFile = new File("target/test-classes/", fileUnderTest());
 
 		Files.copy(originalSourceFile, unformatedFile);
 

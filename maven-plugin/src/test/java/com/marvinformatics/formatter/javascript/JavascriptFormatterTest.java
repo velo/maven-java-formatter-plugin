@@ -15,12 +15,29 @@
  */
 package com.marvinformatics.formatter.javascript;
 
+import java.util.Map;
+
+import org.junit.Test;
+
 import com.marvinformatics.formatter.AbstractFormatterTest;
+import com.marvinformatics.formatter.Formatter;
 
 public class JavascriptFormatterTest extends AbstractFormatterTest {
 
-	public void testDoFormatFile() throws Exception {
-		doTestFormat(new JavascriptFormatter(), "AnyJS.js");
+	@Override
+	public Formatter createFormatter() {
+		return new JavascriptFormatter();
+	}
+
+	@Override
+	public void tuneDefaultConfigs(Map<String, String> options) {
+		options.put("org.eclipse.wst.jsdt.core.formatter.tabulation.char", "space");
+		options.put("org.eclipse.wst.jsdt.core.formatter.lineSplit", "120");
+	}
+
+	@Override
+	public String fileUnderTest() {
+		return "AnyJS.js";
 	}
 
 }

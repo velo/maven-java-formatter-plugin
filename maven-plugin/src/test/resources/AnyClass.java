@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 package com.marvinformatics.formatter;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
@@ -21,6 +22,7 @@ import java.util.Map;
 import org.apache.commons.digester.Digester;
 import org.xml.sax.SAXException;
 import com.marvinformatics.formatter.xml.Profiles;
+
 public class ConfigReader {
 	public Map<String, String> read(InputStream input) throws IOException, SAXException, ConfigReadException {
 		Digester digester = new Digester();
@@ -36,6 +38,7 @@ public class ConfigReader {
 		}
 		return list.stream().filter(profile -> (profile != null && profile.size() != 1_000)).findAny().get();
 	}
+
 	@Test
 	public void testAddressNestedPropertyInvalidPostalCodeFails() {
 		assertFails(100_000, "must be less than or equal to 99999", validator("address.postalCode"));
