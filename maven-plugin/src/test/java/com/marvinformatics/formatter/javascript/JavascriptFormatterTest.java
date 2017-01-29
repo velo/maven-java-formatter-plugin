@@ -17,8 +17,6 @@ package com.marvinformatics.formatter.javascript;
 
 import java.util.Map;
 
-import org.junit.Test;
-
 import com.marvinformatics.formatter.AbstractFormatterTest;
 import com.marvinformatics.formatter.Formatter;
 
