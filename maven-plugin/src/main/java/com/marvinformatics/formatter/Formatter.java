@@ -26,8 +26,6 @@ public interface Formatter {
 	 * Format individual file.
 	 * 
 	 * @param file
-	 * @param ending
-	 * @param dryRun
 	 * @return
 	 */
 	public abstract Result formatFile(Path file);

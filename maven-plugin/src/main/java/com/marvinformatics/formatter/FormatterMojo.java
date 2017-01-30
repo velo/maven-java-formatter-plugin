@@ -220,9 +220,8 @@ public class FormatterMojo extends AbstractMojo implements ConfigurationSource {
 			pathsToScan = Arrays.asList(this.sourceDirectory, this.testSourceDirectory).stream();
 
 		ResultCollector rc = new ResultCollector();
-		RecursiveWalk w = new RecursiveWalk(createJavaFormatter(), createJsFormatter(), rc, pathsToScan
-				.filter(file -> isValidDirectory(file))
-				.map(file -> file.toPath()));
+		RecursiveWalk w = new RecursiveWalk(createJavaFormatter(), createJsFormatter(), rc,
+				pathsToScan.filter(file -> isValidDirectory(file)).map(file -> file.toPath()));
 		ForkJoinPool p = new ForkJoinPool(8);
 		p.invoke(w);
 
