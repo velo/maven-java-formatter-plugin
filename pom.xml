@@ -28,7 +28,7 @@
 
   <groupId>com.marvinformatics.formatter</groupId>
   <artifactId>parent</artifactId>
-  <version>1.9.0-SNAPSHOT</version>
+  <version>1.9.1.RC1</version>
   <packaging>pom</packaging>
 
   <description>Plugin for formatting source code</description>
@@ -158,6 +158,13 @@
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
         <version>0.7.6.201602180812</version>
+        <configuration>
+          <includes>
+            <include>**/marvinformatics/*</include>
+          </includes>
+          <destFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</destFile>
+          <propertyName>utCoverage</propertyName>
+        </configuration>
         <executions>
           <execution>
             <goals>
@@ -166,13 +173,6 @@
             </goals>
           </execution>
         </executions>
-        <configuration>
-          <includes>
-            <include>**/marvinformatics/*</include>
-          </includes>
-          <destFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</destFile>
-          <propertyName>utCoverage</propertyName>
-        </configuration>
       </plugin>
 
       <plugin>
