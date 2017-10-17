@@ -21,7 +21,7 @@
   <parent>
     <groupId>com.marvinformatics.formatter</groupId>
     <artifactId>parent</artifactId>
-    <version>1.9.0-SNAPSHOT</version>
+    <version>1.9.2</version>
   </parent>
   <artifactId>formatter-maven-plugin-its</artifactId>
 
