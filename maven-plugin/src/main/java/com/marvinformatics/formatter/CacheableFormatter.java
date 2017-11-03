@@ -15,10 +15,7 @@
  */
 package com.marvinformatics.formatter;
 
-import java.io.IOException;
 import java.util.function.Function;
-
-import org.eclipse.jface.text.BadLocationException;
 
 public class CacheableFormatter extends AbstractCacheableFormatter implements Formatter {
 
@@ -31,7 +28,7 @@ public class CacheableFormatter extends AbstractCacheableFormatter implements Fo
 	}
 
 	@Override
-	protected String doFormat(String code) throws IOException, BadLocationException {
+	protected String doFormat(String code) {
 		return doFormat.apply(code);
 	}
 

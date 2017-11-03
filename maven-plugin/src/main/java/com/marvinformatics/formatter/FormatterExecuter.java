@@ -32,7 +32,6 @@ import org.codehaus.plexus.util.MatchPatterns;
 import org.codehaus.plexus.util.ReaderFactory;
 import org.codehaus.plexus.util.SelectorUtils;
 import org.codehaus.plexus.util.StringUtils;
-import org.eclipse.wst.jsdt.core.formatter.CodeFormatter;
 import org.xml.sax.SAXException;
 
 import com.google.common.base.Stopwatch;
@@ -128,9 +127,13 @@ public class FormatterExecuter {
 		});
 	}
 
-	private ThreadLocal<JavascriptFormatter> createJsFormatter() {
+	private ThreadLocal<Formatter> createJsFormatter() {
 		Supplier<Map<String, String>> lazyConfig = () -> getFormattingOptions(config.jsConfig());
-		return ThreadLocal.withInitial(() -> new JavascriptFormatter(lazyConfig.get(), config));
+		return ThreadLocal.withInitial(() -> {
+			return new CacheableFormatter(config, new JavascriptFormatter(
+					lazyConfig.get(),
+					config.lineEnding().getChars())::doFormat);
+		});
 	}
 
 	private boolean isValidDirectory(File file) {
