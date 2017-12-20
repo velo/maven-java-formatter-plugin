@@ -29,20 +29,28 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>jdt-core</module>
-    <module>jsdt-core</module>
+    <module>formatter-api</module>
+    <module>java-formatter</module>
+    <module>java-formatter-test</module>
+    <module>javascript-formatter</module>
+    <module>javascript-formatter-test</module>
+    <!--
+    <module>groovy-formatter</module>
+    <module>groovy-formatter-test</module>
+-->
   </modules>
 
   <profiles>
     <profile>
       <id>formatter-jars</id>
+
       <activation>
         <file>
-          <exists>META-INF/MANIFEST.MF</exists>
+          <exists>${basedir}/shade</exists>
         </file>
       </activation>
-      <build>
 
+      <build>
         <plugins>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
@@ -104,6 +112,24 @@
                   </excludes>
                 </filter>
               </filters>
+              <relocations>
+                <relocation>
+                  <pattern>org</pattern>
+                  <shadedPattern>${formatter.relocation}org</shadedPattern>
+                  <excludes>
+                    <exclude>org.xml.**.*</exclude>
+                    <exclude>org.eclipse.**.*</exclude>
+                  </excludes>
+                </relocation>
+                <relocation>
+                  <pattern>com.ibm</pattern>
+                  <shadedPattern>${formatter.relocation}com.ibm</shadedPattern>
+                </relocation>
+                <relocation>
+                  <pattern>com.google</pattern>
+                  <shadedPattern>${formatter.relocation}com.google</shadedPattern>
+                </relocation>
+              </relocations>
             </configuration>
             <executions>
               <execution>

@@ -115,7 +115,7 @@ public class FormatterExecuter {
 		return pattern;
 	}
 
-	private ThreadLocal<Formatter> createJavaFormatter() {
+	private ThreadLocal<CacheableFormatter> createJavaFormatter() {
 		Supplier<Map<String, String>> lazyConfig = () -> getFormattingOptions(config.javaConfig());
 		return ThreadLocal.withInitial(() -> {
 			return new CacheableFormatter(config, new JavaFormatter(
@@ -123,16 +123,16 @@ public class FormatterExecuter {
 					config.getCompilerSources(),
 					config.getCompilerCompliance(),
 					config.getCompilerCodegenTargetPlatform(),
-					config.lineEnding().getChars())::doFormat);
+					config.lineEnding()));
 		});
 	}
 
-	private ThreadLocal<Formatter> createJsFormatter() {
+	private ThreadLocal<CacheableFormatter> createJsFormatter() {
 		Supplier<Map<String, String>> lazyConfig = () -> getFormattingOptions(config.jsConfig());
 		return ThreadLocal.withInitial(() -> {
 			return new CacheableFormatter(config, new JavascriptFormatter(
 					lazyConfig.get(),
-					config.lineEnding().getChars())::doFormat);
+					config.lineEnding()));
 		});
 	}
 
