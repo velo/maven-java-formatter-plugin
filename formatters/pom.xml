@@ -27,6 +27,7 @@
 
   <artifactId>formatters</artifactId>
   <packaging>pom</packaging>
+  <name>formatters</name>
 
   <modules>
     <module>formatter-api</module>
@@ -151,6 +152,7 @@
               <pomElements>
                 <parent>flatten</parent>
                 <profiles>flatten</profiles>
+                <name>keep</name>
                 <build>remove</build>
                 <dependencies>remove</dependencies>
                 <repositories>remove</repositories>

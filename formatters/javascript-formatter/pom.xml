@@ -27,6 +27,7 @@
 
   <artifactId>javascript-formatter</artifactId>
   <packaging>eclipse-plugin</packaging>
+  <name>javascript-formatter</name>
 
   <properties>
     <formatter.relocation>formatter.javascript.</formatter.relocation>

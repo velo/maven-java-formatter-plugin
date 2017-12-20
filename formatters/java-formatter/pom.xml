@@ -27,6 +27,7 @@
 
   <artifactId>java-formatter</artifactId>
   <packaging>eclipse-plugin</packaging>
+  <name>java-formatter</name>
 
   <properties>
     <formatter.relocation>formatter.java.</formatter.relocation>
