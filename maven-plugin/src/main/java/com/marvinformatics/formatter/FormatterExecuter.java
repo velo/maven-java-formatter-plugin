@@ -118,8 +118,11 @@ public class FormatterExecuter {
 	private ThreadLocal<CacheableFormatter> createJavaFormatter() {
 		Supplier<Map<String, String>> lazyConfig = () -> getFormattingOptions(config.javaConfig());
 		return ThreadLocal.withInitial(() -> {
+			final Map<String, String> formatterSettings = lazyConfig.get();
+			config.getLog()
+					.debug("Loading settings onto formatter: \n" + formatterSettings.entrySet());
 			return new CacheableFormatter(config, new JavaFormatter(
-					lazyConfig.get(),
+					formatterSettings,
 					config.getCompilerSources(),
 					config.getCompilerCompliance(),
 					config.getCompilerCodegenTargetPlatform(),
@@ -149,15 +152,20 @@ public class FormatterExecuter {
 	 *             the mojo execution exception
 	 */
 	private Map<String, String> getFormattingOptions(String cfgFile) {
-		if (cfgFile == null)
+		if (cfgFile == null) {
+			config.getLog().info("No config file present");
 			return new HashMap<String, String>();
+		}
 
+		config.getLog().info("Reading config from " + cfgFile);
 		Resource resource = Resource.forPath(cfgFile);
-		if (resource.exists())
-			//FIXME add a warning
+		if (!resource.exists()) {
+			config.getLog().warn("Config not found: " + cfgFile);
 			return new HashMap<String, String>();
+		}
 
 		try {
+			config.getLog().info("Reading config from file: " + cfgFile);
 			return getOptionsFromConfigFile(resource);
 		} catch (MojoExecutionException e) {
 			throw new IllegalStateException("Error loading Java config", e);

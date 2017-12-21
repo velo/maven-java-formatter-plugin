@@ -109,7 +109,20 @@
                   <artifact>*:*</artifact>
                   <excludes>
                     <exclude>META-INF/*</exclude>
-                    <exclude>com/ibm/icu/impl/data/icudt56b/**/*</exclude>
+                    <exclude>META-INF/maven/**</exclude>
+                    <exclude>**/com/ibm/icu/impl/data/**</exclude>
+                    <exclude>**/*.exsd</exclude>
+                    <exclude>**/*.gif</exclude>
+                    <exclude>**/*.html</exclude>
+                    <exclude>**/*.jar</exclude>
+                    <exclude>**/*.jnilib</exclude>
+                    <exclude>**/*.js</exclude>
+                    <exclude>**/*.png</exclude>
+                    <exclude>**/*.profile</exclude>
+                    <exclude>**/*.so</exclude>
+                    <exclude>**/*.txt</exclude>
+                    <exclude>**/*.xsd</exclude>
+                    <exclude>**/*.zip</exclude>
                   </excludes>
                 </filter>
               </filters>
@@ -119,7 +132,8 @@
                   <shadedPattern>${formatter.relocation}org</shadedPattern>
                   <excludes>
                     <exclude>org.xml.**.*</exclude>
-                    <exclude>org.eclipse.**.*</exclude>
+                    <exclude>org.eclipse.jdt.core.**.*</exclude>
+                    <exclude>org.eclipse.wst.jsdt.core.**.*</exclude>
                   </excludes>
                 </relocation>
                 <relocation>
