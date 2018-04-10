@@ -51,13 +51,18 @@ public class JavaFormatter implements Formatter {
 	}
 
 	public String format(String code) {
-		TextEdit te = formatter.format(CodeFormatter.K_COMPILATION_UNIT, code, 0, code.length(), 0,
+		final TextEdit te = formatter.format(
+				CodeFormatter.K_COMPILATION_UNIT | CodeFormatter.F_INCLUDE_COMMENTS,
+				code,
+				0,
+				code.length(),
+				0,
 				lineEnding.getChars());
 		if (te == null)
 			throw new IllegalArgumentException(
 					"Code cannot be formatted. Possible cause " + "is unmatched source/target/compliance version.");
 
-		IDocument doc = new Document(code);
+		final IDocument doc = new Document(code);
 		try {
 			te.apply(doc);
 		} catch (MalformedTreeException | BadLocationException e) {
