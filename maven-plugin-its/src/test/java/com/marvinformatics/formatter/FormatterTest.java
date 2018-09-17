@@ -15,11 +15,11 @@
  */
 package com.marvinformatics.formatter;
 
-import java.io.File;
-
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.io.File;
 
 import io.takari.maven.testing.TestResources;
 import io.takari.maven.testing.executor.MavenRuntime;
@@ -41,8 +41,8 @@ public class FormatterTest {
 	}
 
 	@Test
-	public void simpleFormat() throws Exception {
-		File basedir = resources.getBasedir("format");
+	public void javaFormat() throws Exception {
+		final File basedir = resources.getBasedir("format");
 		maven.forProject(basedir)
 				.withCliOption("-X")
 				.execute("formatter:format")
@@ -51,8 +51,27 @@ public class FormatterTest {
 	}
 
 	@Test
-	public void validate() throws Exception {
-		File basedir = resources.getBasedir("format");
+	public void javaValidate() throws Exception {
+		final File basedir = resources.getBasedir("format");
+		maven.forProject(basedir)
+				.withCliOption("-X")
+				.execute("formatter:validate")
+				.assertLogText("Format doesn't match!");
+	}
+
+	@Test
+	public void jsFormat() throws Exception {
+		final File basedir = resources.getBasedir("javascript");
+		maven.forProject(basedir)
+				.withCliOption("-X")
+				.execute("formatter:format")
+				.assertErrorFreeLog()
+				.assertLogText("Successfully formatted: 1 file(s)");
+	}
+
+	@Test
+	public void jsValidate() throws Exception {
+		final File basedir = resources.getBasedir("javascript");
 		maven.forProject(basedir)
 				.withCliOption("-X")
 				.execute("formatter:validate")
