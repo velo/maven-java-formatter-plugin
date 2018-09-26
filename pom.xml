@@ -48,10 +48,9 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-    <tychoVersion>1.0.0</tychoVersion>
     <plugin.version>3.5</plugin.version>
     <java.version>1.8</java.version>
-    <tychoVersion>1.0.0</tychoVersion>
+    <tychoVersion>1.2.0</tychoVersion>
   </properties>
 
   <dependencyManagement>
@@ -354,7 +353,7 @@
     <repository>
       <!-- must have id luna to override parent pom -->
       <id>luna</id>
-      <url>http://download.eclipse.org/releases/oxygen/</url>
+      <url>http://download.eclipse.org/releases/2018-09/</url>
       <layout>p2</layout>
     </repository>
   </repositories>
