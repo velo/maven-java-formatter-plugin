@@ -25,7 +25,7 @@ import com.marvinformatics.formatter.xml.Profiles;
 
 public class ConfigReader {
 	public Map<String, String> read(InputStream input) throws IOException, SAXException, ConfigReadException {
-		Digester digester = new Digester();
+		var digester = new Digester();
 		digester.addRuleSet(new RuleSet());
 		Object result;
 		try (input) {

@@ -55,15 +55,15 @@ public abstract class AbstractFormatterTest {
 			}
 
 			public String getCompilerSources() {
-				return "9";
+				return "11";
 			}
 
 			public String getCompilerCompliance() {
-				return "9";
+				return "11";
 			}
 
 			public String getCompilerCodegenTargetPlatform() {
-				return "9";
+				return "11";
 			}
 
 			@Override

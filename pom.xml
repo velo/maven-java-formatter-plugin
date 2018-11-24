@@ -27,7 +27,7 @@
   </parent>
 
   <groupId>com.marvinformatics.formatter</groupId>
-  <artifactId>parent</artifactId>
+  <artifactId>formatter-parent</artifactId>
   <version>1.9.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
@@ -302,36 +302,6 @@
       </roles>
     </developer>
   </developers>
-  <contributors>
-    <contributor>
-      <name>Jeremy Landis</name>
-      <email>jeremylandis@hotmail.com</email>
-      <url>http://www.linkedin.com/pub/jeremy-landis/19/b27/548/</url>
-      <organization>hazendaz</organization>
-      <organizationUrl>https://github.com/hazendaz</organizationUrl>
-      <roles>
-        <role>Developer</role>
-      </roles>
-      <timezone>-5</timezone>
-      <properties>
-        <picUrl>http://m.c.lnkd.licdn.com/mpr/mpr/shrink_200_200/p/1/000/128/174/30cff69.jpg</picUrl>
-      </properties>
-    </contributor>
-    <contributor>
-      <name>Jeremy Landis</name>
-      <email>jeremylandis@hotmail.com</email>
-      <url>http://www.linkedin.com/pub/jeremy-landis/19/b27/548/</url>
-      <organization>hazendaz</organization>
-      <organizationUrl>https://github.com/hazendaz</organizationUrl>
-      <roles>
-        <role>Developer</role>
-      </roles>
-      <timezone>-5</timezone>
-      <properties>
-        <picUrl>http://m.c.lnkd.licdn.com/mpr/mpr/shrink_200_200/p/1/000/128/174/30cff69.jpg</picUrl>
-      </properties>
-    </contributor>
-  </contributors>
 
   <scm>
     <connection>scm:git:git://github.com/velo/maven-formatter-plugin.git</connection>
@@ -353,6 +323,17 @@
     <repository>
       <!-- must have id luna to override parent pom -->
       <id>luna</id>
+      <url>http://download.eclipse.org/eclipse/updates/4.10milestones/</url>
+      <layout>p2</layout>
+    </repository>
+    <repository>
+      <!-- must override to latest version -->
+      <id>m2e-core</id>
+      <url>https://otto.takari.io/content/sites/m2e.extras/m2e/1.10.0/N/LATEST/</url>
+      <layout>p2</layout>
+    </repository>
+    <repository>
+      <id>2018-09-release</id>
       <url>http://download.eclipse.org/releases/2018-09/</url>
       <layout>p2</layout>
     </repository>

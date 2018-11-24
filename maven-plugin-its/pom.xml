@@ -20,7 +20,7 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.marvinformatics.formatter</groupId>
-    <artifactId>parent</artifactId>
+    <artifactId>formatter-parent</artifactId>
     <version>1.9.0-SNAPSHOT</version>
   </parent>
   <artifactId>formatter-maven-plugin-its</artifactId>
